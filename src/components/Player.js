@@ -2,9 +2,11 @@ import React, { useRef, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { IoPlaySkipForward } from "react-icons/io5";
 import { IoPlaySkipBack } from "react-icons/io5";
-import { faPlay } from "@fortawesome/free-solid-svg-icons";
+import { faPause, faPlay } from "@fortawesome/free-solid-svg-icons";
 import { PiShuffleSimpleBold } from "react-icons/pi";
 import { IoMdRepeat } from "react-icons/io";
+import { MdOutlineDownloadForOffline } from "react-icons/md";
+import { IoMdVolumeHigh } from "react-icons/io";
 
 const Player = ({ currentSong, isPlaying, setIsPlaying }) => {
   const audioRef = useRef(null);
@@ -65,15 +67,19 @@ const Player = ({ currentSong, isPlaying, setIsPlaying }) => {
             <FontAwesomeIcon
               onClick={songPlayHandler}
               className="rounded-full text-blue-600"
-              icon={faPlay}
+              icon={isPlaying ? faPause : faPlay}
               size="2x"
             />
             <IoPlaySkipForward className="h-6 w-6" />
             <IoMdRepeat className="h-6 w-6" />
           </div>
-          <div className="flex">
-            <p>{getTime(songInfo.currentTime)}</p>
-            <p>/{getTime(songInfo.duration)}</p>
+          <div className="flex gap-4">
+            <MdOutlineDownloadForOffline className="h-6 w-6" />
+            <div className="flex gap-2">
+              <p>{getTime(songInfo.currentTime)}</p>/
+              <p>{getTime(songInfo.duration)}</p>
+            </div>
+            <IoMdVolumeHigh className="h-6 w-6" />
           </div>
         </div>
         <audio
