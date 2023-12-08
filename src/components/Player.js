@@ -41,17 +41,17 @@ const Player = ({ currentSong, isPlaying, setIsPlaying }) => {
   });
 
   return (
-    <div className="flex flex-col justify-center items-center">
-      <div className=" flex flex-col w-full text-white bg-[#1C1C1C]">
+    <div className="flex flex-col justify-center items-center fixed bottom-0 w-full">
+      <div className="flex flex-col w-full text-white relative">
         <input
           type="range"
           min={0}
           max={songInfo.duration}
           value={songInfo.currentTime}
           onChange={dragHandler}
-          className="md:w-[100%] w-[60%] h-[10%]"
+          className="w-[100%] absolute -top-3 left-0 right-0"
         />
-        <div className="flex justify-between w-full items-center px-10 py-1.5">
+        <div className="flex justify-between w-full items-center px-10 py-2 bg-[#1C1C1C]">
           <div className="flex  items-center justify-center gap-2">
             <img src={currentSong.cover} className="h-10 w-10 rounded-md"></img>
             <div className="flex flex-col text-sm ">
