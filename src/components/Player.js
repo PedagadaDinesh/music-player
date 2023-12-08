@@ -3,6 +3,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { IoPlaySkipForward } from "react-icons/io5";
 import { IoPlaySkipBack } from "react-icons/io5";
 import { faPlay } from "@fortawesome/free-solid-svg-icons";
+import { PiShuffleSimpleBold } from "react-icons/pi";
+import { IoMdRepeat } from "react-icons/io";
 
 const Player = ({ currentSong, isPlaying, setIsPlaying }) => {
   const audioRef = useRef(null);
@@ -39,38 +41,51 @@ const Player = ({ currentSong, isPlaying, setIsPlaying }) => {
   });
 
   return (
-    <div className="flex flex-col justify-center items-center gap-8">
-      <div className=" flex p-4 gap-5 w-full justify-center items-center text-white">
-        <p>{getTime(songInfo.currentTime)}</p>
+    <div className="flex flex-col justify-center items-center">
+      <div className=" flex flex-col w-full text-white bg-[#1C1C1C]">
         <input
           type="range"
           min={0}
           max={songInfo.duration}
           value={songInfo.currentTime}
           onChange={dragHandler}
-          className="md:w-[40%] w-[60%] h-[10%]"
+          className="md:w-[100%] w-[60%] h-[10%]"
         />
-        <p>{getTime(songInfo.duration)}</p>
+        <div className="flex justify-between w-full items-center px-10 py-1.5">
+          <div className="flex  items-center justify-center gap-2">
+            <img src={currentSong.cover} className="h-10 w-10 rounded-md"></img>
+            <div className="flex flex-col text-sm ">
+              <p>{currentSong.movie}</p>
+              <p className="text-gray-400">{currentSong.name}</p>
+            </div>
+          </div>
+          <div className="flex text-white gap-10 items-center justify-center">
+            <PiShuffleSimpleBold className="h-6 w-6" />
+            <IoPlaySkipBack className="h-6 w-6" />
+            <FontAwesomeIcon
+              onClick={songPlayHandler}
+              className="rounded-full text-blue-600"
+              icon={faPlay}
+              size="2x"
+            />
+            <IoPlaySkipForward className="h-6 w-6" />
+            <IoMdRepeat className="h-6 w-6" />
+          </div>
+          <div className="flex">
+            <p>{getTime(songInfo.currentTime)}</p>
+            <p>/{getTime(songInfo.duration)}</p>
+          </div>
+        </div>
+        <audio
+          // autoPlay
+          // controls
+          onTimeUpdate={timeUpdateHandler}
+          onLoadedMetadata={timeUpdateHandler}
+          ref={audioRef}
+          src={currentSong.audio}
+          className="w-[60%]"
+        ></audio>
       </div>
-      <div className="flex gap-20 cursor-pointer text-white border-2 border-red-600 px-4 py-3 rounded-full justify-center items-center">
-        <IoPlaySkipBack className="h-6 w-6" />
-        <FontAwesomeIcon
-          onClick={songPlayHandler}
-          className="play"
-          icon={faPlay}
-          size="2x"
-        />
-        <IoPlaySkipForward className="h-6 w-6" />
-      </div>
-      <audio
-        // autoPlay
-        // controls
-        onTimeUpdate={timeUpdateHandler}
-        onLoadedMetadata={timeUpdateHandler}
-        ref={audioRef}
-        src={currentSong.audio}
-        className="w-[60%]"
-      ></audio>
     </div>
   );
 };

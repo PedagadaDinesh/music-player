@@ -11,14 +11,16 @@ function App() {
   const [isPlaying, setIsPlaying] = useState(false);
 
   return (
-    <div className=" bg-black flex flex-col gap-12 h-screen">
+    <div className="bg-black flex flex-col gap-12 h-screen">
       <Navbar />
-      <Song currentSong={currentSong} />
-      <Player
-        isPlaying={isPlaying}
-        setIsPlaying={setIsPlaying}
-        currentSong={currentSong}
-      />
+      <div className="flex flex-col justify-between gap-[15rem]">
+        <Song currentSong={currentSong} />
+        <Player
+          isPlaying={isPlaying}
+          setIsPlaying={setIsPlaying}
+          currentSong={currentSong}
+        />
+      </div>
     </div>
   );
 }
