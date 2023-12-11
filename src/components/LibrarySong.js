@@ -1,9 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import MaterialTable, { MTableToolbar } from "@material-table/core";
 import { muiTable } from "../utils";
+import { BsThreeDotsVertical } from "react-icons/bs";
+import { TbDownload } from "react-icons/tb";
 
-const LibrarySong = ({ songs }) => {
-  console.log(songs);
+const LibrarySong = ({ songs, setCurrentSong }) => {
+  const songSelectHandler = (rowData) => {
+    setCurrentSong({ ...rowData });
+  };
   return (
     <div className="w-full">
       <MaterialTable
@@ -24,6 +28,7 @@ const LibrarySong = ({ songs }) => {
           paging: false,
           toolbar: false,
         }}
+        onRowClick={(row, newValue) => songSelectHandler(newValue)}
         style={{
           ...muiTable.styles,
           overflow: "hidden",
@@ -44,7 +49,7 @@ const LibrarySong = ({ songs }) => {
             title: "#",
             field: "sl",
             editable: "never",
-            width: "5%",
+            width: "0%",
             filtering: false,
             cellStyle: {
               backgroundColor: "black",
@@ -53,15 +58,15 @@ const LibrarySong = ({ songs }) => {
             },
           },
           {
-            title: "Track",
+            title: "TRACK",
             field: "name",
-            width: "40%",
+            width: "35%",
             hideFilterIcon: true,
             render: ({ name, cover }) => {
               return (
                 <div className="flex gap-2 items-center">
-                  <img src={cover} className="h-10 w-10"></img>
-                  <p className="">{name}</p>
+                  <img src={cover} className="h-12 w-12 rounded-lg"></img>
+                  <p className="text-sm">{name}</p>
                 </div>
               );
             },
@@ -72,12 +77,57 @@ const LibrarySong = ({ songs }) => {
             },
           },
           {
-            title: "Artists",
+            title: "ARTISTS",
             field: "artist",
-            width: "40%",
+            width: "25%",
             hideFilterIcon: true,
             render: ({ artist }) => {
-              return <div className=" flex items-center gap-2">{artist}</div>;
+              return (
+                <div className=" flex items-center gap-2 text-sm text-gray-400 font-medium">
+                  {artist}
+                </div>
+              );
+            },
+            cellStyle: {
+              backgroundColor: "black",
+              color: "white",
+              borderBottom: "none",
+            },
+          },
+          {
+            title: "DURATION",
+            field: "duration",
+            width: "30%",
+            hideFilterIcon: true,
+            render: ({ duration }) => {
+              return (
+                <div className=" flex items-center text-center gap-2 text-sm text-gray-400 font-medium">
+                  {duration}
+                </div>
+              );
+            },
+            cellStyle: {
+              backgroundColor: "black",
+              color: "white",
+              borderBottom: "none",
+            },
+          },
+          {
+            title: "ACTIONS",
+            field: "actions",
+            width: "10%",
+            hideFilterIcon: true,
+            render: ({}) => {
+              return (
+                <div className="flex gap-5">
+                  <button>
+                    <TbDownload className="h-6 w-6" />
+                  </button>
+                  <button>
+                    <BsThreeDotsVertical className="h-5 w-5" />
+                  </button>
+                </div>
+              );
             },
             cellStyle: {
               backgroundColor: "black",

@@ -16,10 +16,8 @@ export const muiTable = {
       color: "#666769",
       padding: "0.8rem",
       fontWeight: "600",
-      fontSize: "1rem",
-      rowStyle: {
-        borderBottom: "",
-      },
+      fontSize: "0.9rem",
+      borderBottom: "none",
     },
   }),
 };

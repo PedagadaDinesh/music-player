@@ -4,7 +4,7 @@ import { TbDownload } from "react-icons/tb";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import Library from "./Library";
 
-const Song = ({ currentSong, songs }) => {
+const Song = ({ currentSong, songs, setCurrentSong }) => {
   // console.log(songs);
   return (
     <div className="flex flex-col justify-center w-full px-[6.5rem]">
@@ -74,7 +74,7 @@ const Song = ({ currentSong, songs }) => {
             </button>
           </div>
           <div className="w-[75%]">
-            <Library songs={songs} />
+            <Library songs={songs} setCurrentSong={setCurrentSong} />
           </div>
         </div>
       </div>

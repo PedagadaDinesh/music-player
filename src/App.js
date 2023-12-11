@@ -14,7 +14,11 @@ function App() {
     <div className="bg-black flex flex-col gap-12">
       <Navbar />
       <div className="flex flex-col justify-between gap-[15rem]">
-        <Song currentSong={currentSong} songs={songs} />
+        <Song
+          currentSong={currentSong}
+          songs={songs}
+          setCurrentSong={setCurrentSong}
+        />
         <Player
           isPlaying={isPlaying}
           setIsPlaying={setIsPlaying}
