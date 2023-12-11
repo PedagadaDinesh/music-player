@@ -5,7 +5,14 @@ import { BsThreeDotsVertical } from "react-icons/bs";
 import Library from "./Library";
 import { IoMdShare } from "react-icons/io";
 import { FiDownload } from "react-icons/fi";
-const Song = ({ currentSong, songs, setCurrentSong, audioRef, isPlaying }) => {
+const Song = ({
+  currentSong,
+  songs,
+  setCurrentSong,
+  audioRef,
+  isPlaying,
+  setSongs,
+}) => {
   // console.log(songs);
   const [isOpen, setIsOpen] = useState(false);
   const toggleMenu = () => {
@@ -107,6 +114,7 @@ const Song = ({ currentSong, songs, setCurrentSong, audioRef, isPlaying }) => {
               setCurrentSong={setCurrentSong}
               audioRef={audioRef}
               isPlaying={isPlaying}
+              setSongs={setSongs}
             />
           </div>
         </div>

@@ -4,9 +4,30 @@ import { muiTable } from "../utils";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { TbDownload } from "react-icons/tb";
 
-const LibrarySong = ({ songs, setCurrentSong, audioRef, isPlaying }) => {
+const LibrarySong = ({
+  songs,
+  setCurrentSong,
+  audioRef,
+  isPlaying,
+  setSongs,
+}) => {
   const songSelectHandler = (rowData) => {
     setCurrentSong({ ...rowData });
+
+    // const newSongs = songs.map((song) => {
+    //   if (song.id === rowData?.id) {
+    //     return {
+    //       ...song,
+    //       active: true,
+    //     };
+    //   } else {
+    //     return {
+    //       active: false,
+    //     };
+    //   }
+    // });
+    // setSongs(newSongs);
+
     if (isPlaying) {
       const playPromise = audioRef.current.play();
       if (playPromise !== undefined) {

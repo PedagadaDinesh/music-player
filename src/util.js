@@ -22,7 +22,7 @@ function Songs() {
       artist: "Harshavardhan Rameshwar",
       audio: "https://paglasongs.com/files/download/id/16754",
       id: uuidv4(),
-      active: true,
+      active: false,
       duration: "2:14",
     },
     {
@@ -33,7 +33,7 @@ function Songs() {
       artist: "Bhupinder Babbal",
       audio: "https://paglasongs.com/files/download/id/16604",
       id: uuidv4(),
-      active: true,
+      active: false,
       duration: "3:00",
     },
     {
@@ -44,7 +44,7 @@ function Songs() {
       artist: "Shreya Ghoshal, Manan Bhardwaj",
       audio: "https://paglasongs.com/files/download/id/16737",
       id: uuidv4(),
-      active: true,
+      active: false,
       duration: "3:36",
     },
     {
@@ -55,7 +55,7 @@ function Songs() {
       artist: "	B Praak",
       audio: "https://paglasongs.com/files/download/id/16672",
       id: uuidv4(),
-      active: true,
+      active: false,
       duration: "3:02",
     },
     {
@@ -66,7 +66,7 @@ function Songs() {
       artist: "	Ashim Kemson",
       audio: "https://paglasongs.com/files/download/id/16738",
       id: uuidv4(),
-      active: true,
+      active: false,
       duration: "2:43",
     },
     {
@@ -77,7 +77,7 @@ function Songs() {
       artist: "Arijit Singh",
       audio: "https://paglasongs.com/files/download/id/16024",
       id: uuidv4(),
-      active: true,
+      active: false,
       duration: "4:32",
     },
     {
@@ -88,7 +88,7 @@ function Songs() {
       artist: "Raghav Chaitanya",
       audio: "https://paglasongs.com/files/download/id/15737",
       id: uuidv4(),
-      active: true,
+      active: false,
       duration: "5:46",
     },
     {
@@ -99,7 +99,7 @@ function Songs() {
       artist: "Sonu Nigam",
       audio: "https://paglasongs.com/files/download/id/165058",
       id: uuidv4(),
-      active: true,
+      active: false,
       duration: "3:04",
     },
   ];
