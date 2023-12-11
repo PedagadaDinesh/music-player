@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { IoPlaySkipForward } from "react-icons/io5";
 import { IoPlaySkipBack } from "react-icons/io5";
@@ -34,6 +34,15 @@ const Player = ({
   const dragHandler = (e) => {
     audioRef.current.currentTime = e.target.value;
     setSongInfo({ ...songInfo, currentTime: e.target.value });
+  };
+
+  const [volume, setVolume] = useState(0.5);
+
+  const handleVolumeChange = (e) => {
+    const newVolume = e.target.value;
+    // console.log(newVolume);
+    setVolume(newVolume);
+    audioRef.current.volume = newVolume;
   };
 
   return (
@@ -73,7 +82,20 @@ const Player = ({
               <p>{getTime(songInfo.currentTime)}</p>/
               <p>{getTime(songInfo.duration)}</p>
             </div>
-            <IoMdVolumeHigh className="h-6 w-6 cursor-pointer" />
+            {/* <IoMdVolumeHigh className="h-6 w-6 cursor-pointer" /> */}
+            <div className="flex items-center gap-2">
+              <IoMdVolumeHigh className="h-6 w-6 cursor-pointer" />
+              {/* Volume slider */}
+              <input
+                type="range"
+                min={0}
+                max={1}
+                step={0.01}
+                value={volume}
+                onChange={handleVolumeChange}
+                className="cursor-pointer h-[5%]"
+              />
+            </div>
           </div>
         </div>
       </div>
