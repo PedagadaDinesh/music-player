@@ -1,11 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import { FaPlay } from "react-icons/fa6";
 import { TbDownload } from "react-icons/tb";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import Library from "./Library";
-
-const Song = ({ currentSong, songs, setCurrentSong }) => {
+import { IoMdShare } from "react-icons/io";
+import { FiDownload } from "react-icons/fi";
+const Song = ({ currentSong, songs, setCurrentSong, audioRef, isPlaying }) => {
   // console.log(songs);
+  const [isOpen, setIsOpen] = useState(false);
+  const toggleMenu = () => {
+    setIsOpen(!isOpen);
+  };
+
   return (
     <div className="flex flex-col justify-center w-full px-[6.5rem]">
       <div className=" flex flex-col gap-10 text-white ">
@@ -20,8 +26,30 @@ const Song = ({ currentSong, songs, setCurrentSong }) => {
               <div className="flex justify-between items-center w-full">
                 <h1 className="text-2xl">Featured Artists</h1>
                 <div className="flex gap-4">
-                  <TbDownload className="h-8 w-8 text-white border-2 px-1 py-1 rounded-full" />
-                  <BsThreeDotsVertical className="h-8 w-8 text-white border-2 px-1 py-1 rounded-full" />
+                  <button>
+                    <TbDownload className="h-8 w-8 text-white border-2 px-1 py-1 rounded-full" />
+                  </button>
+                  <button
+                    onClick={toggleMenu}
+                    className="relative"
+                    onBlur={() => {
+                      setIsOpen(false);
+                    }}
+                  >
+                    <BsThreeDotsVertical className="h-8 w-8 text-white border-2 px-1 py-1 rounded-full" />
+                    {isOpen && (
+                      <div className="bg-[#21252D] text-white text-sm font-normal flex flex-col gap-3 w-36 px-2 py-3 absolute top-0 right-12 rounded-xl border border-blue-400">
+                        <p className="flex gap-2 items-start">
+                          <FiDownload className="w-5 h-5" />
+                          Download
+                        </p>
+                        <p className="flex gap-2 items-start">
+                          <IoMdShare className="w-5 h-5" />
+                          Share
+                        </p>
+                      </div>
+                    )}
+                  </button>
                 </div>
               </div>
               <div className="flex gap-10">
@@ -64,7 +92,7 @@ const Song = ({ currentSong, songs, setCurrentSong }) => {
             </div>
           </div>
         </div>
-        <div className="flex justify-between w-full">
+        <div className="flex justify-between w-full ">
           <div className="flex flex-col">
             <h1 className="font-medium text-4xl pb-2">{currentSong.movie}</h1>
             <p className="text-gray-400">{currentSong.name}</p>
@@ -74,7 +102,12 @@ const Song = ({ currentSong, songs, setCurrentSong }) => {
             </button>
           </div>
           <div className="w-[75%]">
-            <Library songs={songs} setCurrentSong={setCurrentSong} />
+            <Library
+              songs={songs}
+              setCurrentSong={setCurrentSong}
+              audioRef={audioRef}
+              isPlaying={isPlaying}
+            />
           </div>
         </div>
       </div>

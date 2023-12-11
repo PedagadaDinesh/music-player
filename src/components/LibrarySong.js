@@ -4,9 +4,17 @@ import { muiTable } from "../utils";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { TbDownload } from "react-icons/tb";
 
-const LibrarySong = ({ songs, setCurrentSong }) => {
+const LibrarySong = ({ songs, setCurrentSong, audioRef, isPlaying }) => {
   const songSelectHandler = (rowData) => {
     setCurrentSong({ ...rowData });
+    if (isPlaying) {
+      const playPromise = audioRef.current.play();
+      if (playPromise !== undefined) {
+        playPromise.then((audio) => {
+          audioRef.current.play();
+        });
+      }
+    }
   };
   return (
     <div className="w-full">
